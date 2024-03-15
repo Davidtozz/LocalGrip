@@ -1,7 +1,9 @@
 <script lang="ts">
   import { Toaster } from "$lib/components/ui/sonner";
   import { supabase } from "$lib/supabaseClient";
+  import { toast } from "svelte-sonner";
   import "../app.pcss";
+  import { ModeWatcher } from "mode-watcher";
 
   const {data:{subscription}} = supabase.auth.onAuthStateChange(async (event, session) => {
     console.log(event, session)
@@ -11,7 +13,7 @@
         console.log("You're in your initial session");
         break;
       case 'SIGNED_IN':
-        console.log("You're signed in");
+        toast("You've signed in!")
         break;
       case 'SIGNED_OUT':
         console.log("You're signed out");
@@ -31,6 +33,7 @@
 </script> 
   
 <Toaster position="top-center"/>
+<ModeWatcher />
 <slot />
 
 <svelte:head>
