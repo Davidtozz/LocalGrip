@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as FormPrimitive from "formsnap";
 	import { cn } from "$lib/utils.js.js";
+  import FormDescription from "./form-description.svelte";
 
 	type $$Props = FormPrimitive.FieldErrorsProps & {
 		errorClasses?: string | undefined | null;
@@ -20,7 +21,7 @@
 >
 	<slot {errors} {fieldErrorsAttrs} {errorAttrs}>
 		{#each errors as error}
-			<div {...errorAttrs} class={cn(errorClasses)}>{error}</div>  
+			<span class="block"><FormDescription {...errorAttrs} class={cn(errorClasses)}>{error}</FormDescription></span>
 		{/each}
 	</slot>
 </FormPrimitive.FieldErrors>

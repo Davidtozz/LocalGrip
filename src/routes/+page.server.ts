@@ -27,6 +27,9 @@ export const actions: Actions = {
 
 
         const {email, password} = form.data;
+        if(email === undefined) return fail(400, {
+            message: "Email is required"
+        })
 
         const {error} = await supabase.auth.signUp({
             email,
@@ -34,7 +37,8 @@ export const actions: Actions = {
         });
 
         if(error) return fail(500, {
-            message: "Couldn't signup: " +error.message
+            message: "Couldn't signup: " +error.message,
+            form
         })
 
         return {
@@ -51,6 +55,9 @@ export const actions: Actions = {
         }
 
         const {email, password} = form.data;
+        if(email === undefined) return fail(400, {
+            form
+        })
 
         const {error, data} = await supabase.auth.signInWithPassword({
             email,
