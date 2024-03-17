@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
+    "dev": "vite dev -- --open",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -41,6 +41,7 @@
     "lucide-svelte": "^0.358.0",
     "mode-watcher": "^0.3.0",
     "supabase": "^1.148.6",
+    "svelte-chartjs": "^3.1.5",
     "svelte-radix": "^1.1.0",
     "svelte-sonner": "^0.3.19",
     "sveltekit-superforms": "^2.9.0",

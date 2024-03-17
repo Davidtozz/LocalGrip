@@ -6,6 +6,7 @@
   import * as Form from '$lib/components/ui/form/';
   import { zodClient } from "sveltekit-superforms/adapters";
   import { Input } from "$lib/components/ui/input";
+  import Button from "$lib/components/ui/button/button.svelte";
   
   export let data: SuperValidated<Infer<AuthSchema>>;
   let action: string;
@@ -18,3 +19,4 @@
 </script>
 
 <AuthForm {action} {form} isSignup={true} />
+<a href="/dashboard">Go to dashboard</a>

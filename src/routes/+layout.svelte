@@ -5,7 +5,7 @@
   import "../app.pcss";
   import { ModeWatcher } from "mode-watcher";
 
-  const {data:{subscription}} = supabase.auth.onAuthStateChange(async (event, session) => {
+  /* const {data:{subscription}} = supabase.auth.onAuthStateChange(async (event, session) => {
     console.log(event, session)
 
     switch (event) {
@@ -28,7 +28,7 @@
         console.log("You're in user updated");
         break;
     }
-  })
+  }) */
 
 </script> 
   
@@ -37,6 +37,6 @@
 <slot />
 
 <svelte:head>
-    <title>Testing</title>
+    <title>Food SaaS</title>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
 </svelte:head>
