@@ -1,9 +1,9 @@
 <script lang="ts">
     import {Chart, type ChartConfiguration, type ChartConfigurationCustomTypesPerDataset} from 'chart.js/auto'
-    import { onMount } from 'svelte'
+    import { onDestroy, onMount } from 'svelte'
 
     let portfolio: HTMLCanvasElement;
-    let myChart;
+    let myChart: Chart;
 
     const data = {
             labels: ['Expenses', 'Savings', 'Investments'],
@@ -50,10 +50,12 @@
     onMount(()=> {
         const ctx = portfolio.getContext('2d');
         // Initialize chart using default config set
-        var myChart = new Chart(ctx!, config);
+        myChart = new Chart(ctx!, config);
       })
 
-
+      onDestroy(() => {
+        myChart.destroy();
+      })
 
 
 </script>
