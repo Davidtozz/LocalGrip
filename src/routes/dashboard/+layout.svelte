@@ -12,15 +12,13 @@
 <div class="flex flex-row flex-1 w-screen ">
     <Card.Root class="flex rounded-none flex-col  justify-between w-48 border-0 bg-secondary-foreground">   
         <Card.Header>
-            <Button variant="outline" class="w-full">
-                <h1>Food SaaS</h1>
-            </Button>
+            <h1 class="dark:text-secondary-foreground text-primary-foreground font-medium text-xl text-center">Local<span class="text-primary">Grip</span></h1>
         </Card.Header>
         
         <Card.Content>
             <ul class="w-full">
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full" on:click={() => goto("/dashboard")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard")}>
                         <Home class="w-10 h-5"/> 
                         Overview
                     </Button>
@@ -31,32 +29,32 @@
                     </Button>
                 </li> -->
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full" on:click={() => goto("/dashboard/products")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/products")}>
                         <ChefHat class="w-10"/>Menù
                     </Button>
                 </li>
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full" on:click={() => goto("/dashboard/orders")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/orders")}>
                         <Package class="w-10"/>Orders
                     </Button>
                 </li>
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full" on:click={() => goto("/dashboard/settings")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/settings")}>
                         <BarChart2 class="w-10"/>Analytics
                     </Button>
                 </li>
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full" on:click={() => goto("/dashboard/settings")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/settings")}>
                         <Truck class="w-10"/> Delivery
                     </Button>
                 </li>
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full" on:click={() => goto("/dashboard/settings")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/settings")}>
                         <MessageCircleDashed  class="w-10"/> Feedback
                     </Button>
                 </li>
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full" on:click={() => goto("/dashboard/settings")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/settings")}>
                         <Settings class="w-10"/>Settings
                     </Button>
                 </li>
@@ -84,5 +82,6 @@
             </div>
         </Card.Footer>
     </Card.Root>
+<!--     <ThemeButton /> -->
     <slot />
 </div>
