@@ -16,6 +16,7 @@
     CategoryScale,
     } from 'chart.js';
   import { onDestroy } from 'svelte';
+  import Label from './ui/label/label.svelte';
 
   const data: ChartData<"line", (number | Point)[], unknown> = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -87,19 +88,19 @@
 
 
 <Card.Root class="max-h-full flex flex-col p-4">
-  <Card.Header class="p-0 text-center flex flex-row justify-between">
-    <h1 class="text-lg">Sales Performance</h1>
-    <div class="m-0 p-0 border-box">
+  <Card.Header class="p-0 text-center flex flex-row justify-between items-center">
+    <Label>Sales Performance</Label>
+    <div class="m-0 p-0 border-box w-20">
       <Select.Root portal={null} >
         <Select.Trigger class="h-full text-xs focus:ring-transparent">
           <Select.Value placeholder="Period" class="outline-none"/>
         </Select.Trigger>
         <!-- TODO change chart data accordingly -->
         <Select.Content class="text-xs">
-          <Select.Item value="today" class="text-xs text-center">Today</Select.Item>
-          <Select.Item value="week" class="text-xs">Week</Select.Item>
+          <Select.Item value="today" class="text-xs text-center"><p>Today</p></Select.Item>
+          <Select.Item value="week" class="text-xs">Week </Select.Item>
           <Select.Item value="month" class="text-xs">Month</Select.Item>
-          <Select.Item value="year" class="text-xs">Year</Select.Item>
+          <Select.Item value="year" class="text-xs ">Year </Select.Item>
         </Select.Content>
       </Select.Root>  
     </div>
