@@ -37,6 +37,6 @@
 <slot />
 
 <svelte:head>
-    <title>Food SaaS</title>
+    <title>LocalGrip</title>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
 </svelte:head>
