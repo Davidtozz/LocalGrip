@@ -9,7 +9,7 @@
     import {Skeleton} from "$lib/components/ui/skeleton";
     import * as Tooltip from "$lib/components/ui/tooltip";
 </script>
-<div class="flex flex-row flex-1 w-screen ">
+<div class="flex flex-row flex-1 h-screen ">
     <Card.Root class="flex rounded-none flex-col  justify-between w-48 border-0 bg-secondary-foreground">   
         <Card.Header>
             <h1 class="dark:text-secondary-foreground text-primary-foreground font-medium text-xl text-center">Local<span class="text-primary">Grip</span></h1>
@@ -23,13 +23,8 @@
                         Overview
                     </Button>
                 </li>
-               <!--  <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full text-start" on:click={() => goto("/dashboard/clients")}>
-                       <Utensils class="w-10 h-5"/> Clients
-                    </Button>
-                </li> -->
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/products")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/menu")}>
                         <ChefHat class="w-10"/>Menù
                     </Button>
                 </li>
@@ -39,17 +34,17 @@
                     </Button>
                 </li>
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/settings")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/analytics")}>
                         <BarChart2 class="w-10"/>Analytics
                     </Button>
                 </li>
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/settings")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/delivery")}>
                         <Truck class="w-10"/> Delivery
                     </Button>
                 </li>
                 <li>
-                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/settings")}>
+                    <Button variant="ghost" class="text-primary-foreground w-full justify-start" on:click={() => goto("/dashboard/feedback")}>
                         <MessageCircleDashed  class="w-10"/> Feedback
                     </Button>
                 </li>
@@ -65,7 +60,7 @@
         <Card.Footer class="w-full p-3 ">
             <div class="flex flex-row w-full h-full justify-between">
                 <Avatar.Root class="object-contain">
-                    <Avatar.Image src="https://source.unsplash.com/random/300x300" class="border-primary border-2 rounded-full"/>
+                    <Avatar.Image src="https://source.unsplash.com/random?avatar/300x300" class="border-primary border-2 rounded-full"/>
                 </Avatar.Root>    
                 <div class="flex flex-col">
                     <small class="text-primary-foreground">John Doe</small>
