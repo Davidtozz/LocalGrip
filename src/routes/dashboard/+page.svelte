@@ -2,7 +2,6 @@
     import * as Card from "$lib/components/ui/card"
     import * as Select from '$lib/components/ui/select'
     import {Label} from "$lib/components/ui/label";
-    import OrdersTable from "$lib/components/OrdersTable.svelte";
     import {Bell} from "lucide-svelte"
     import type { ChartOptions, ChartData, Point } from 'chart.js';
     import {Chart as ChartJS, Title, Tooltip,Legend,LineElement,LinearScale,PointElement,CategoryScale} from 'chart.js';
@@ -109,8 +108,7 @@
             </Card.Header>
 
             <div class="h-full flex flex-col">
-                <OrdersTable />
-
+                
             </div>
            
         </Card.Root>
