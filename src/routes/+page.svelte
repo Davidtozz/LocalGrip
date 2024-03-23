@@ -1,6 +1,6 @@
 <script lang="ts">
   import { superForm, type Infer, type SuperValidated } from "sveltekit-superforms";
-  import { authSchema, type AuthSchema } from "../lib/authSchema";
+  import { authSchema, type AuthSchema } from "../lib/formSchemas";
   import AuthForm from '$lib/components/ui/form/AuthForm.svelte';
   import * as Card from '$lib/components/ui/card';
   import * as Form from '$lib/components/ui/form/';
