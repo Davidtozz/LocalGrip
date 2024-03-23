@@ -35,5 +35,14 @@ export const authSchema = z.object({
         }
     })
 })
-
 export type AuthSchema = typeof authSchema;
+
+export const menuItemSchema = z.object({
+    name: z.string().min(3).max(30),    
+    description: z.string().min(3).max(100),
+    price: z.coerce.number().min(0.01),
+    category: z.string().min(3).max(30),
+    subcategory: z.string().min(3).max(30).optional()
+})
+
+export type MenuItemSchema = typeof menuItemSchema;
