@@ -1,7 +1,7 @@
 import { fail, type Actions } from "@sveltejs/kit";
 import { supabase } from "$lib/supabaseClient";
 import { superValidate } from "sveltekit-superforms";
-import { authSchema } from "../lib/authSchema";
+import { authSchema } from "../lib/formSchemas";
 import { zod } from "sveltekit-superforms/adapters";
 import type { PageServerLoad } from "./$types";
 
