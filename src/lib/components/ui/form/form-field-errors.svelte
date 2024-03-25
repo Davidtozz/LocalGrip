@@ -1,27 +1,31 @@
 <script lang="ts">
-	import * as FormPrimitive from "formsnap";
-	import { cn } from "$lib/utils.js.js";
+  import * as FormPrimitive from "formsnap";
+  import { cn } from "$lib/utils.js.js";
   import FormDescription from "./form-description.svelte";
 
-	type $$Props = FormPrimitive.FieldErrorsProps & {
-		errorClasses?: string | undefined | null;
-	};
+  type $$Props = FormPrimitive.FieldErrorsProps & {
+    errorClasses?: string | undefined | null;
+  };
 
-	let className: $$Props["class"] = undefined;
-	export { className as class };
-	export let errorClasses: $$Props["class"] = undefined;
+  let className: $$Props["class"] = undefined;
+  export { className as class };
+  export let errorClasses: $$Props["class"] = undefined;
 </script>
 
 <FormPrimitive.FieldErrors
-	class={cn("text-[0.8rem] font-medium text-destructive", className)}
-	{...$$restProps}
-	let:errors
-	let:fieldErrorsAttrs
-	let:errorAttrs
+  class="{cn('text-[0.8rem] font-medium text-destructive', className)}"
+  {...$$restProps}
+  let:errors
+  let:fieldErrorsAttrs
+  let:errorAttrs
 >
-	<slot {errors} {fieldErrorsAttrs} {errorAttrs}>
-		{#each errors as error}
-			<span class="block"><FormDescription {...errorAttrs} class={cn(errorClasses)}>{error}</FormDescription></span>
-		{/each}
-	</slot>
+  <slot {errors} {fieldErrorsAttrs} {errorAttrs}>
+    {#each errors as error}
+      <span class="block"
+        ><FormDescription {...errorAttrs} class="{cn(errorClasses)}"
+          >{error}</FormDescription
+        ></span
+      >
+    {/each}
+  </slot>
 </FormPrimitive.FieldErrors>
