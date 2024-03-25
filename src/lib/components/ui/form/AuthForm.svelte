@@ -1,65 +1,93 @@
 <script lang="ts">
-  import type { SuperForm } from "sveltekit-superforms/client";
-    import Button from "../button/button.svelte";
-    import * as Card from "../card";
-    import * as Form from "../form";
+  import type { Infer, SuperForm } from "sveltekit-superforms/client";
+  import Button from "../button/button.svelte";
+  import * as Card from "../card";
+  import * as Form from "../form";
   import { Input } from "../input";
+  import type { AuthSchema } from "$lib/formSchemas";
+  import { Moon } from "svelte-loading-spinners";
+  
+  export let form: SuperForm<Infer<AuthSchema>>;
+  const { form: formData } = form;
 
-    export let action: string;
-    export let form: SuperForm<{username: string; password: string; email?: string | undefined;}, any>;
-    const {form: formData, errors} = form;
-
-    export let isSignup: boolean = true;
+  let isSignup: boolean = true;
 </script>
 
 <div class="flex items-center justify-center min-h-screen">
-<Card.Root class="w-[350px]">
+  <Card.Root class="w-[350px]">
     <Card.Header>
-        <Card.Title>
-            {#if isSignup}
-                Signup for a new account
-            {:else}
-                Login to your account
-            {/if}
-        </Card.Title>
+      <Card.Title>
+        {#if isSignup}
+          Signup for a new account <!-- todo: enhance styles -->
+        {:else}
+          Login to your account
+        {/if}
+      </Card.Title>
     </Card.Header>
     <Card.Content>
-        <form method="POST" id="authform" {action} use:form.enhance>
-           <Form.Field {form} name="username">
+      <form method="POST" id="authform" {action} use:form.enhance>
+        {#if isSignup}
+          <Form.Field {form} name="username">
             <Form.Control let:attrs>
-                <Form.Label>Username</Form.Label>
-                <Input {...attrs} bind:value={$formData.username} />
+              <Form.Label>Username</Form.Label>
+              <Input {...attrs} bind:value="{$formData.username}" />
             </Form.Control>
             <!-- <Form.Description>This will be your username.</Form.Description> -->
             <Form.FieldErrors />
-           </Form.Field>
+          </Form.Field>
+        {/if}
 
-           {#if isSignup}
-            <Form.Field {form} name="email" aria-required>
-                <Form.Control let:attrs>
-                    <Form.Label>Email</Form.Label>
-                    <Input {...attrs} bind:value={$formData.email} />
-                </Form.Control>
-                <Form.FieldErrors />
-                <!-- <Form.Description>We will send you a confirmation email.</Form.Description> -->
-            </Form.Field>
-           {/if}
-           <Form.Field {form} name="password">
-            <Form.Control let:attrs>
-                <Form.Label>Password</Form.Label>
-                <Input {...attrs} bind:value={$formData.password} />
-            </Form.Control>
-            <!-- <Form.Description>Type in a strong password!</Form.Description> -->
-            <Form.FieldErrors />
-           </Form.Field>
-           
-           
-        </form>
-        <Card.Footer>
-            <slot name="form-footer" >
-                <Button form="authform" type="submit" class="w-full">Submit</Button>
-            </slot>
-        </Card.Footer>
+        <Form.Field {form} name="email" aria-required>
+          <Form.Control let:attrs>
+            <Form.Label>Email</Form.Label>
+            <Input {...attrs} bind:value="{$formData.email}" />
+          </Form.Control>
+          <Form.FieldErrors />
+          <!-- <Form.Description>We will send you a confirmation email.</Form.Description> -->
+        </Form.Field>
+
+        <Form.Field {form} name="password">
+          <Form.Control let:attrs>
+            <Form.Label>Password</Form.Label>
+            <Input {...attrs} bind:value="{$formData.password}" />
+          </Form.Control>
+          <!-- <Form.Description>Type in a strong password!</Form.Description> -->
+          <Form.FieldErrors />
+        </Form.Field>
+      </form>
+      <Card.Footer class="flex flex-col">
+        <Button
+          form="authform"
+          type="submit"
+          formaction="{isSignup ? '?/signUp' : '?/signIn'}"
+          class="w-full">Submit</Button
+        >
+        {#if isSignup}
+          <span
+            class="flex flex-row w-full text-[10px] items-center justify-center"
+            >Already have an account?
+            <Button
+              variant="link"
+              class="text-[10px] p-2"
+              on:click="{() => (isSignup = !isSignup)}"
+            >
+              Login
+            </Button></span
+          >
+        {:else}
+          <span
+            class="flex flex-row w-full text-[10px] items-center justify-center"
+            >Don't have an account?
+            <Button
+              variant="link"
+              class="text-[10px] p-2"
+              on:click="{() => (isSignup = !isSignup)}"
+            >
+              Signup
+            </Button></span
+          >
+        {/if}
+      </Card.Footer>
     </Card.Content>
-</Card.Root>
+  </Card.Root>
 </div>

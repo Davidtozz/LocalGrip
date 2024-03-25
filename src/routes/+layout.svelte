@@ -4,39 +4,20 @@
   import { toast } from "svelte-sonner";
   import "../app.pcss";
   import { ModeWatcher } from "mode-watcher";
+  import { goto } from "$app/navigation";
 
-  /* const {data:{subscription}} = supabase.auth.onAuthStateChange(async (event, session) => {
-    console.log(event, session)
-
-    switch (event) {
-      case 'INITIAL_SESSION':
-        console.log("You're in your initial session");
-        break;
-      case 'SIGNED_IN':
-        toast("You've signed in!")
-        break;
-      case 'SIGNED_OUT':
-        console.log("You're signed out");
-        break;
-      case 'PASSWORD_RECOVERY':
-        console.log("You're in password recovery");
-        break;
-      case 'TOKEN_REFRESHED':
-        console.log("You're in token refreshed");
-        break;
-      case 'USER_UPDATED':
-        console.log("You're in user updated");
-        break;
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_OUT") {
+      goto("/");
     }
-  }) */
+  });
+</script>
 
-</script> 
-  
-<Toaster position="top-center"/>
+<Toaster position="top-center" />
 <ModeWatcher />
 <slot />
 
 <svelte:head>
-    <title>LocalGrip</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
+  <title>LocalGrip</title>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
 </svelte:head>
