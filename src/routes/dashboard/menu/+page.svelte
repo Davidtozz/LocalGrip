@@ -1,159 +1,88 @@
-
 <script lang="ts">
-    import { Button } from "$lib/components/ui/button";
-    import * as Card from "$lib/components/ui/card"
-    import * as Dialog  from "$lib/components/ui/dialog";
-    import * as Select from '$lib/components/ui/select'
-    import {Label} from "$lib/components/ui/label";
-    import * as Form from "$lib/components/ui/form";
-    import { Plus } from "lucide-svelte";
-    import { writable } from "svelte/store";
-    import { menuItemSchema, type MenuItemSchema } from "$lib/formSchemas";
-    import { zodClient } from "sveltekit-superforms/adapters";
-    import SuperDebug, { superForm, type Infer, type SuperValidated } from "sveltekit-superforms";
-    import { Separator } from "$lib/components/ui/separator";
-    import { browser } from "$app/environment";
-    import {z} from "zod";
-    import { Input } from "$lib/components/ui/input";
-    import { toast } from "svelte-sonner";
-    import { menuStore } from "$lib/stores";
-    import { get } from "svelte/store";
+  import NewItemButton from "../../../lib/components/ui/button/NewItemButton.svelte";
+  import * as Card from "$lib/components/ui/card";
+  import { Label } from "$lib/components/ui/label";
+  import type { MenuItemSchema } from "$lib/formSchemas";
+  import { type Infer, type SuperValidated } from "sveltekit-superforms";
+  import * as Avatar from "$lib/components/ui/avatar";
+  import { Edit, EditIcon, Ellipsis } from "lucide-svelte";
 
+  import { menuStore } from "$lib/stores";
+  import { Skeleton } from "$lib/components/ui/skeleton";
+  import { Button } from "$lib/components/ui/button";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 
-    export let data: SuperValidated<Infer<MenuItemSchema>>;
-    const form = superForm(data, {
-        validators: zodClient(menuItemSchema),
-        dataType: 'json',
-        onUpdate: ({form: f}) => {
-            if(f.valid) {
-                toast.success("Item added to the menu!")
-                menuStore.update((items) => {
-                    if(items) return [...items, f.data]
-                    return [f.data]
-                })
-            } else {
-                toast.error("Please fill all the fields")
-            }
-        }
-    })
+  export let data: SuperValidated<Infer<MenuItemSchema>>;
 
-    const {form: formData, enhance} = form;
-
-
-
-    const TAGS = [
-        "Primi",
-        "Secondi",
-        "Antipasti",
-        "Bevande",
-        "Dolci",
-        "Pizze",
-        "Vini",
-        "Birre",
-        "Cocktail",
-        "Caffè",
-        "Tè",
-        "Liquori",
-        "Grappe",
-        "Aperitivi",
-    ]
-
-
-    $: selectedCategory = $formData.category ? {
-        label: $formData.category,
-        value: $formData.category
-    } : undefined;
-
+  let testArray = [...Array(20).keys()];
 </script>
 
-
-<Card.Root class="rounded-none flex flex-col w-full overflow-auto">
-    <Card.Header class="flex flex-row justify-between">
-        <h1 class="font-bold text-lg">Menù</h1>
-
-        <Dialog.Root>
-            <Dialog.Trigger>
-                <Button variant="outline" class="p-2">
-                    <Plus class="h-4"/>
-                    <small>New Item</small>
-                </Button>        
-            </Dialog.Trigger>
-            <Dialog.Content>
-                <Dialog.Header>
-                    <Dialog.Title>
-                        <h1 class="text-lg">Add new item</h1>
-                    </Dialog.Title>
-                </Dialog.Header>
-                <form method="POST" use:enhance>
-                    <Form.Field {form} name="name">
-                        <Form.Control>
-                            <Form.Label>Name</Form.Label>
-                            <Input class="w-full" bind:value={$formData.name}/>
-                        </Form.Control>
-                        <Form.FieldErrors />
-                    </Form.Field>
-
-                    <Form.Field {form} name="description">
-                        <Form.Control>
-                            <Form.Label>Description</Form.Label>
-                            <Input class="w-full" bind:value={$formData.description}/>
-                        </Form.Control>
-                        <Form.FieldErrors />
-                    </Form.Field>
-
-                    <Form.Field {form} name="price" >
-                        <Form.Control>
-                            <Form.Label>Price</Form.Label>
-                            <Input class="w-full" type="number" bind:value={$formData.price}/>
-                        </Form.Control>
-                        <Form.FieldErrors />
-                    </Form.Field>
-                    <Form.Field {form} name="category">
-                        <Form.Control let:attrs>
-                            <Form.Label>Category</Form.Label>
-                            <Select.Root selected={selectedCategory} onSelectedChange={(v) => {v && ($formData.category = v.value)}}>
-                              <Select.Trigger {...attrs}>
-                                <Select.Value placeholder="Choose a category" />
-                              </Select.Trigger>
-                              <Select.Content>
-                                <Select.Item value="primo">Primo</Select.Item>
-                                <Select.Item value="secondo">Secondo</Select.Item>
-                                <Select.Item value="contorno">Contorno</Select.Item>
-                              </Select.Content>
-                            </Select.Root>    
-                            <input hidden aria-hidden bind:value={$formData.category} name={attrs.name}/>
-                        </Form.Control>
-                        <Form.FieldErrors />
-                    </Form.Field>
-
-                    <Form.Button >
-                        Submit
-                    </Form.Button>
-                </form>
-                    
-            </Dialog.Content>
-        </Dialog.Root>
-    </Card.Header>
-    <Card.Content class="flex flex-col">
-        <section id="main-courses" class="p-2 rounded-sm">
-            <Label>Primo piatto</Label>
-                <div class="grid grid-cols-4 grid-rows-1 gap-2 text-secondary">
-                    {#each $menuStore ?? [] as item}
-                        {@debug item, menuStore}
-
-                        <Card.Root>
-                            <Card.Content class="object-contain bg-red p-2">
-                                <img src={`https://source.unsplash.com/random?${item.name}/150x150`} alt={`${item.name}`}>
-                            </Card.Content>
-                        <Card.Footer>
-                                <Label>{item.name ?? undefined}</Label>
-                        </Card.Footer>
-                        </Card.Root>
-                    {/each}
-                </div> 
-            </section>
-        
-        
-       
-    </Card.Content>
+<!-- todo:  fix horrible styling 💀 -->
+<Card.Root class="rounded-none flex flex-col w-full overflow-hidden  border-0">
+  <Card.Header class="flex flex-row justify-between items-center h-fit">
+    <h1 class="font-bold text-lg">Menù</h1>
+    <NewItemButton {data} />
+  </Card.Header>
+  <Card.Content class="bg-gray-700 h-full">
+    <section id="main-courses" class="p-2 rounded-sm flex-1 h-full">
+      <Label>Primo piatto</Label>
+      <div
+        class="{`grid grid-cols-3 grid-rows-6 gap-2 text-secondary h-full `}"
+      >
+        {#each $menuStore as item}
+          <Card.Root
+            class="relative flex flex-row gap-2 bg-card p-2 text-secondary-foreground rounded-sm"
+          >
+            <Avatar.Root class="rounded-sm h-auto w-auto">
+              <Avatar.Image
+                src="{`https://source.unsplash.com/random?${item.name}/150x150`}"
+                alt="first"
+              />
+              <Avatar.Fallback>
+                <Skeleton />
+              </Avatar.Fallback>
+            </Avatar.Root>
+            <div class="flex flex-col truncate">
+              <small class="text-medium">{item.name}</small>
+              <small class="truncate text-muted-foreground"
+                >{item.description}</small
+              >
+              <small class="text-xs text-muted-foreground">€ {item.price}</small
+              >
+            </div>
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger class="absolute top-1 right-2">
+                <Ellipsis
+                  stroke="{'1'}"
+                  size="{20}"
+                  class="text-muted-foreground hover:text-secondary-foreground"
+                />
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content side="bottom">
+                <DropdownMenu.Group>
+                  <DropdownMenu.Item
+                    class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3"
+                  >
+                    <Edit size="{10}" />Edit</DropdownMenu.Item
+                  >
+                  <DropdownMenu.Item
+                    class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3"
+                    >Billing</DropdownMenu.Item
+                  >
+                  <DropdownMenu.Item
+                    class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3"
+                    >Team</DropdownMenu.Item
+                  >
+                  <DropdownMenu.Item
+                    class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3"
+                    >Subscription</DropdownMenu.Item
+                  >
+                </DropdownMenu.Group>
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          </Card.Root>
+        {/each}
+      </div>
+    </section>
+  </Card.Content>
 </Card.Root>
