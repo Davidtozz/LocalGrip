@@ -17,15 +17,13 @@
   {...$$restProps}
   let:errors
   let:fieldErrorsAttrs
-  let:errorAttrs
->
+  let:errorAttrs>
   <slot {errors} {fieldErrorsAttrs} {errorAttrs}>
     {#each errors as error}
       <span class="block"
         ><FormDescription {...errorAttrs} class="{cn(errorClasses)}"
           >{error}</FormDescription
-        ></span
-      >
+        ></span>
     {/each}
   </slot>
 </FormPrimitive.FieldErrors>

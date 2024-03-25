@@ -15,7 +15,6 @@
 
   export let data: SuperValidated<Infer<AuthSchema>>;
 
-
   const form = superForm(data, {
     validators: zodClient(authSchema),
     dataType: "json",

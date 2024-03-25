@@ -10,7 +10,6 @@
 <FormPrimitive.Description
   class="{cn('text-[0.8rem] text-muted-foreground', className)}"
   {...$$restProps}
-  let:descriptionAttrs
->
+  let:descriptionAttrs>
   <slot {descriptionAttrs} />
 </FormPrimitive.Description>

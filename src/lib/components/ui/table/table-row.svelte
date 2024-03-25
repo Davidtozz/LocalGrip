@@ -17,7 +17,6 @@
   )}"
   {...$$restProps}
   on:click
-  on:keydown
->
+  on:keydown>
   <slot />
 </tr>

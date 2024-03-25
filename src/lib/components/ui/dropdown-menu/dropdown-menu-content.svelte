@@ -21,7 +21,6 @@
     className,
   )}"
   {...$$restProps}
-  on:keydown
->
+  on:keydown>
   <slot />
 </DropdownMenuPrimitive.Content>

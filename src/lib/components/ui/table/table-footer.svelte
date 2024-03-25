@@ -10,7 +10,6 @@
 
 <tfoot
   class="{cn('bg-primary font-medium text-primary-foreground', className)}"
-  {...$$restProps}
->
+  {...$$restProps}>
   <slot />
 </tfoot>

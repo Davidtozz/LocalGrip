@@ -6,7 +6,7 @@
   import { Input } from "../input";
   import type { AuthSchema } from "$lib/formSchemas";
   import { Moon } from "svelte-loading-spinners";
-  
+
   export let form: SuperForm<Infer<AuthSchema>>;
   const { form: formData } = form;
 
@@ -60,8 +60,7 @@
           form="authform"
           type="submit"
           formaction="{isSignup ? '?/signUp' : '?/signIn'}"
-          class="w-full">Submit</Button
-        >
+          class="w-full">Submit</Button>
         {#if isSignup}
           <span
             class="flex flex-row w-full text-[10px] items-center justify-center"
@@ -69,11 +68,9 @@
             <Button
               variant="link"
               class="text-[10px] p-2"
-              on:click="{() => (isSignup = !isSignup)}"
-            >
+              on:click="{() => (isSignup = !isSignup)}">
               Login
-            </Button></span
-          >
+            </Button></span>
         {:else}
           <span
             class="flex flex-row w-full text-[10px] items-center justify-center"
@@ -81,11 +78,9 @@
             <Button
               variant="link"
               class="text-[10px] p-2"
-              on:click="{() => (isSignup = !isSignup)}"
-            >
+              on:click="{() => (isSignup = !isSignup)}">
               Signup
-            </Button></span
-          >
+            </Button></span>
         {/if}
       </Card.Footer>
     </Card.Content>

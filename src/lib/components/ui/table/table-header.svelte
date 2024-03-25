@@ -13,7 +13,6 @@
   class="{cn('[&_tr]:border-b', className)}"
   {...$$restProps}
   on:click
-  on:keydown
->
+  on:keydown>
   <slot />
 </thead>

@@ -5,10 +5,10 @@ import { zod } from "sveltekit-superforms/adapters";
 import { superValidate } from "sveltekit-superforms";
 
 // @ts-expect-error - required for typechecking
-export const load: PageServerLoad = async ({locals}) => {
+export const load: PageServerLoad = async ({ locals }) => {
   return {
     form: await superValidate(zod(menuItemSchema)),
-    user: locals.user
+    user: locals.user,
   };
 };
 

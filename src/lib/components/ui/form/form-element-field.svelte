@@ -7,8 +7,7 @@
 
 <script
   lang="ts"
-  generics="T extends Record<string, unknown>, U extends FormPathLeaves<T>"
->
+  generics="T extends Record<string, unknown>, U extends FormPathLeaves<T>">
   import type { HTMLAttributes } from "svelte/elements";
   import * as FormPrimitive from "formsnap";
   import { cn } from "$lib/utils.js.js";
@@ -29,8 +28,7 @@
   let:constraints
   let:errors
   let:tainted
-  let:value
->
+  let:value>
   <div class="{cn('space-y-2', className)}">
     <slot {constraints} {errors} {tainted} {value} />
   </div>

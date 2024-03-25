@@ -15,7 +15,6 @@
     className,
   )}"
   {value}
-  {...$$restProps}
->
+  {...$$restProps}>
   <slot />
 </TabsPrimitive.Content>

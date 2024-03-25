@@ -61,8 +61,7 @@
           <Input
             class="w-full"
             bind:value="{$formData.name}"
-            {...$constraints.name}
-          />
+            {...$constraints.name} />
         </Form.Control>
         <Form.FieldErrors />
       </Form.Field>
@@ -73,8 +72,7 @@
           <Input
             class="w-full"
             bind:value="{$formData.description}"
-            {...$constraints.description}
-          />
+            {...$constraints.description} />
         </Form.Control>
         <Form.FieldErrors />
       </Form.Field>
@@ -86,8 +84,7 @@
             class="w-full"
             type="number"
             bind:value="{$formData.price}"
-            {...$constraints.price}
-          />
+            {...$constraints.price} />
         </Form.Control>
         <Form.FieldErrors />
       </Form.Field>
@@ -98,8 +95,7 @@
             selected="{selectedCategory}"
             onSelectedChange="{(v) => {
               v && ($formData.category = v.value);
-            }}"
-          >
+            }}">
             <Select.Trigger {...attrs}>
               <Select.Value placeholder="Choose a category" />
             </Select.Trigger>
@@ -113,8 +109,7 @@
             hidden
             aria-hidden
             bind:value="{$formData.category}"
-            name="{attrs.name}"
-          />
+            name="{attrs.name}" />
         </Form.Control>
         <Form.FieldErrors />
       </Form.Field>
@@ -126,8 +121,7 @@
             form="newitem"
             variant="default"
             data-dialog-close
-            class="select-none"
-          >
+            class="select-none">
             Submit
           </Form.Button>
         </Dialog.Close>

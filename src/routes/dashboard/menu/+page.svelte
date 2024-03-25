@@ -27,17 +27,14 @@
     <section id="main-courses" class="p-2 rounded-sm flex-1 h-full">
       <Label>Primo piatto</Label>
       <div
-        class="{`grid grid-cols-3 grid-rows-6 gap-2 text-secondary h-full `}"
-      >
+        class="{`grid grid-cols-3 grid-rows-6 gap-2 text-secondary h-full `}">
         {#each $menuStore as item}
           <Card.Root
-            class="relative flex flex-row gap-2 bg-card p-2 text-secondary-foreground rounded-sm"
-          >
+            class="relative flex flex-row gap-2 bg-card p-2 text-secondary-foreground rounded-sm">
             <Avatar.Root class="rounded-sm h-auto w-auto">
               <Avatar.Image
                 src="{`https://source.unsplash.com/random?${item.name}/150x150`}"
-                alt="first"
-              />
+                alt="first" />
               <Avatar.Fallback>
                 <Skeleton />
               </Avatar.Fallback>
@@ -45,38 +42,31 @@
             <div class="flex flex-col truncate">
               <small class="text-medium">{item.name}</small>
               <small class="truncate text-muted-foreground"
-                >{item.description}</small
-              >
-              <small class="text-xs text-muted-foreground">€ {item.price}</small
-              >
+                >{item.description}</small>
+              <small class="text-xs text-muted-foreground"
+                >€ {item.price}</small>
             </div>
             <DropdownMenu.Root>
               <DropdownMenu.Trigger class="absolute top-1 right-2">
                 <Ellipsis
                   stroke="{'1'}"
                   size="{20}"
-                  class="text-muted-foreground hover:text-secondary-foreground"
-                />
+                  class="text-muted-foreground hover:text-secondary-foreground" />
               </DropdownMenu.Trigger>
               <DropdownMenu.Content side="bottom">
                 <DropdownMenu.Group>
                   <DropdownMenu.Item
-                    class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3"
-                  >
-                    <Edit size="{10}" />Edit</DropdownMenu.Item
-                  >
+                    class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3">
+                    <Edit size="{10}" />Edit</DropdownMenu.Item>
                   <DropdownMenu.Item
                     class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3"
-                    >Billing</DropdownMenu.Item
-                  >
+                    >Billing</DropdownMenu.Item>
                   <DropdownMenu.Item
                     class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3"
-                    >Team</DropdownMenu.Item
-                  >
+                    >Team</DropdownMenu.Item>
                   <DropdownMenu.Item
                     class="text-[10px] text-muted-foreground hover:font-medium flex flex-row gap-3"
-                    >Subscription</DropdownMenu.Item
-                  >
+                    >Subscription</DropdownMenu.Item>
                 </DropdownMenu.Group>
               </DropdownMenu.Content>
             </DropdownMenu.Root>

@@ -5,6 +5,7 @@
       "files": "*.svelte",
       "options": {
         "parser": "svelte",
+        "svelteAllowShorthand": true,
         "svelteStrictMode": true,
         "bracketSameLine": true,
         "svelteIndentScriptAndStyle": true

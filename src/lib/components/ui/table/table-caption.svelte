@@ -10,7 +10,6 @@
 
 <caption
   class="{cn('mt-4 text-sm text-muted-foreground', className)}"
-  {...$$restProps}
->
+  {...$$restProps}>
   <slot />
 </caption>

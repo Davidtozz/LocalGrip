@@ -71,8 +71,7 @@
               <Subscribe
                 attrs="{cell.attrs()}"
                 let:attrs
-                props="{cell.props()}"
-              >
+                props="{cell.props()}">
                 <Table.Head {...attrs}>
                   {#if cell.id === "amount"}
                     <div class="text-right">
