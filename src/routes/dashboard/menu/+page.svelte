@@ -11,8 +11,19 @@
   import { Skeleton } from "$lib/components/ui/skeleton";
   import { Button } from "$lib/components/ui/button";
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+  import { onMount } from "svelte";
+  import { z } from "zod";
+  import type { Tables } from "$db/schema";
 
-  export let data: SuperValidated<Infer<MenuItemSchema>>;
+  export let data;
+
+  onMount(() => {
+
+    if(!('message' in data.data)) {
+      // @ts-ignore
+      menuStore.set(data.data);
+    }
+  });
 
   let testArray = [...Array(20).keys()];
 </script>
@@ -49,8 +60,8 @@
             <DropdownMenu.Root>
               <DropdownMenu.Trigger class="absolute top-1 right-2">
                 <Ellipsis
-                  stroke="{'1'}"
-                  size="{20}"
+                  stroke={'1'}
+                  size={20}
                   class="text-muted-foreground hover:text-secondary-foreground" />
               </DropdownMenu.Trigger>
               <DropdownMenu.Content side="bottom">

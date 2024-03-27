@@ -3,12 +3,20 @@ import type { PageServerLoad } from "./$types";
 import { menuItemSchema } from "$lib/formSchemas";
 import { zod } from "sveltekit-superforms/adapters";
 import { superValidate } from "sveltekit-superforms";
+import type { Tables } from "$db/schema";
 
 // @ts-expect-error - required for typechecking
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async ({locals}) => {
+
+  console.log('ran load of /dashboard/menu');
+
+  const {data, error} = await locals.supabase.from('menu_item').select().returns<Tables<'menu_item'>[]>();
+
+  if(error) return fail(500, {message: "Internal server error"})
+
   return {
     form: await superValidate(zod(menuItemSchema)),
-    user: locals.user,
+    data
   };
 };
 
@@ -23,9 +31,25 @@ export const actions: Actions = {
       });
     }
 
+    const { error } = await event.locals.supabase.from('menu_item').insert({
+      name: form.data.name,
+      description: form.data.description,
+      price: form.data.price,
+      category: form.data.category
+    }).single();
+
+
+
+    if(error) {
+      return fail(500, {
+        message: "Internal server error",
+        form
+      });
+    }
+
     return {
       success: true,
-      form,
+      form
     };
   },
 };
