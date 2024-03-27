@@ -10,6 +10,7 @@ function _menuStore() {
      * Method to subscribe to changes in the store.
      */
     subscribe,
+    set,
     /**
      * Method to add an item to the store.
      * @param {z.infer<MenuItemSchema>} item - The item to add.
