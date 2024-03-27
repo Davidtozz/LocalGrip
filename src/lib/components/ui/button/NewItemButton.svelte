@@ -15,7 +15,7 @@
   import { toast } from "svelte-sonner";
   import { menuStore } from "$lib/stores";
 
-  export let data: SuperValidated<Infer<MenuItemSchema>>;
+  export let data: any;
   const form = superForm(data, {
     validators: zodClient(menuItemSchema),
     validationMethod: "oninput",
