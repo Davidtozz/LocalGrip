@@ -30,7 +30,7 @@ export const actions: Actions = {
         form,
       });
 
-    const { error } = await event.locals.supabase.auth.signUp({
+    const { data, error } = await event.locals.supabase.auth.signUp({
       email,
       password,
       options: {
@@ -41,9 +41,14 @@ export const actions: Actions = {
       },
     });
 
-    if (error)
+
+
+    const {error: sbError} = await event.locals.supabase.storage.from('image_bucket').upload(`${data.user?.id}/avatar.png`, form.data.avatar)
+
+
+    if (error || sbError)
       return fail(500, {
-        message: "Couldn't signup: " + error.message,
+        message: "Couldn't signup",
         form,
       });
 
@@ -73,11 +78,13 @@ export const actions: Actions = {
     if (error)
       return fail(500, {
         message: "Couldn't signin",
+        form
       });
 
     return {
       success: true,
       data,
+      form
     };
   },
   signOut: async (event) => {

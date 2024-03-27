@@ -20,8 +20,14 @@
   import { Skeleton } from "$lib/components/ui/skeleton";
   import * as Tooltip from "$lib/components/ui/tooltip";
   import { supabase } from "$lib/supabaseClient";
+    import { onMount } from "svelte";
 
   export let data;
+  
+ 
+  console.log("Avatar url: ", data.data.publicUrl)
+ 
+
 </script>
 
 <!-- todo: make dashboard sidebar collapsible with https://paneforge.com/docs/getting-started -->
@@ -42,7 +48,7 @@
           <Button
             variant="ghost"
             class="text-primary-foreground w-full justify-start"
-            on:click="{() => goto('/dashboard')}">
+            on:click={() => goto('/dashboard')}>
             <Home class="w-10 h-5" />
             Overview
           </Button>
@@ -51,8 +57,8 @@
           <Button
             variant="ghost"
             class="text-primary-foreground w-full justify-start"
-            on:click="{() => goto('/dashboard/menu')}">
-            <ChefHat class="w-10" />Menù
+            on:click={() => goto("/dashboard/menu")}>
+            <ChefHat class="w-10" />Menu
           </Button>
         </li>
         <li>
@@ -102,7 +108,7 @@
       <div class="flex flex-row w-full h-full justify-between">
         <Avatar.Root class="object-contain">
           <Avatar.Image
-            src="https://source.unsplash.com/random?avatar/300x300"
+            src={data.data.publicUrl}
             class="border-primary border-2 rounded-full" />
         </Avatar.Root>
         <div class="flex flex-col">

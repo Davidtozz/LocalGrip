@@ -7,9 +7,25 @@
   import { goto } from "$app/navigation";
 
   supabase.auth.onAuthStateChange((event, session) => {
+
+    console.log("event", event)
+
+    console.log("User ID: ", session?.user.id)
+
+
     if (event === "SIGNED_OUT") {
+      const username =       session?.user.user_metadata.username
+        
+      username ? toast.success(`Goodbye, ${username}!`)
+        : toast.success("Goodbye!");
       goto("/");
     }
+
+/*     if(event === "SIGNED_IN") {
+      toast.success("Welcome back!");
+      goto("/dashboard")
+    }
+     */
   });
 </script>
 

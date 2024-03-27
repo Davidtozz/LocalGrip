@@ -5,7 +5,6 @@
   import * as Form from "../form";
   import { Input } from "../input";
   import type { AuthSchema } from "$lib/formSchemas";
-  import { Moon } from "svelte-loading-spinners";
 
   export let form: SuperForm<Infer<AuthSchema>>;
   const { form: formData } = form;
@@ -25,7 +24,7 @@
       </Card.Title>
     </Card.Header>
     <Card.Content>
-      <form method="POST" id="authform" {action} use:form.enhance>
+      <form method="POST" id="authform" use:form.enhance enctype="multipart/form-data">
         {#if isSignup}
           <Form.Field {form} name="username">
             <Form.Control let:attrs>
@@ -50,6 +49,15 @@
           <Form.Control let:attrs>
             <Form.Label>Password</Form.Label>
             <Input {...attrs} bind:value="{$formData.password}" />
+          </Form.Control>
+          <!-- <Form.Description>Type in a strong password!</Form.Description> -->
+          <Form.FieldErrors />
+        </Form.Field>
+
+        <Form.Field {form} name="avatar">
+          <Form.Control let:attrs>
+            <Form.Label>Avatar</Form.Label>
+            <Input {...attrs} bind:value="{$formData.avatar}" type="file"/>
           </Form.Control>
           <!-- <Form.Description>Type in a strong password!</Form.Description> -->
           <Form.FieldErrors />
