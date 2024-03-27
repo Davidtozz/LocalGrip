@@ -1,3 +1,5 @@
+create extension if not exists pg_jsonschema;
+
 create table "public"."menu" (
     "id" uuid not null default gen_random_uuid(),
     "created_at" timestamp with time zone not null default now(),
