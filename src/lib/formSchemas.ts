@@ -38,7 +38,7 @@ export const authSchema = z.object({
       }
     }),
   isLocalOwner: z.boolean().default(true),
-  avatar: z.any().optional(), /* todo: chamnge later */
+  avatar: z.instanceof(File, {message: "Please upload a file"}), /* todo: chamnge later */
 });
 export type AuthSchema = typeof authSchema;
 

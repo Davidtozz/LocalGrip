@@ -21,11 +21,11 @@
       goto("/");
     }
 
-/*     if(event === "SIGNED_IN") {
+    if(event === "SIGNED_IN") {
       toast.success("Welcome back!");
       goto("/dashboard")
     }
-     */
+    
   });
 </script>
 

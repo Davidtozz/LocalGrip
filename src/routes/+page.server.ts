@@ -1,5 +1,5 @@
 import { fail, type Actions } from "@sveltejs/kit";
-import { superValidate } from "sveltekit-superforms";
+import { superValidate, withFiles } from "sveltekit-superforms";
 import { authSchema } from "../lib/formSchemas";
 import { zod } from "sveltekit-superforms/adapters";
 
@@ -15,12 +15,11 @@ export const load: PageServerLoad = async (event) => {
 
 export const actions: Actions = {
   //? Default actions are not allowed when named actions are present
-  signUp: async (event) => {
-    const form = await superValidate(event, zod(authSchema));
+  signUp: async ({ request, locals }) => {
+
+    const form = await superValidate(request, zod(authSchema));
     if (!form.valid) {
-      return fail(400, {
-        message: "Invalid form",
-      });
+      return fail(400, withFiles({ form }));
     }
 
     const { email, username, password, isLocalOwner } = form.data;
@@ -30,32 +29,22 @@ export const actions: Actions = {
         form,
       });
 
-    const { data, error } = await event.locals.supabase.auth.signUp({
+    const { data, error } = await locals.supabase.auth.signUp({
       email,
       password,
       options: {
         data: {
           username: username,
-          isLocalOwner: isLocalOwner,
+          isLocalOwner: isLocalOwner
         },
       },
     });
 
+    const {error: sbError} = await locals.supabase.storage.from('image_bucket').upload(`${data.user?.id}/avatar.png`, form.data.avatar)
 
+    if (error || sbError) return fail(500, withFiles({form}));
 
-    const {error: sbError} = await event.locals.supabase.storage.from('image_bucket').upload(`${data.user?.id}/avatar.png`, form.data.avatar)
-
-
-    if (error || sbError)
-      return fail(500, {
-        message: "Couldn't signup",
-        form,
-      });
-
-    return {
-      success: true,
-      form,
-    };
+    return withFiles({form})
   },
   signIn: async (event) => {
     const form = await superValidate(event, zod(authSchema));

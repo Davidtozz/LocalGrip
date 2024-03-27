@@ -1,15 +1,18 @@
 <script lang="ts">
-  import type { Infer, SuperForm } from "sveltekit-superforms/client";
+  import { fileProxy, type Infer, type SuperForm } from "sveltekit-superforms";
   import Button from "../button/button.svelte";
   import * as Card from "../card";
   import * as Form from "../form";
-  import { Input } from "../input";
+  import { Input, type FormInputEvent } from "../input";
   import type { AuthSchema } from "$lib/formSchemas";
 
   export let form: SuperForm<Infer<AuthSchema>>;
   const { form: formData } = form;
 
   let isSignup: boolean = true;
+
+  const file = fileProxy(form, "avatar")
+
 </script>
 
 <div class="flex items-center justify-center min-h-screen">
@@ -53,15 +56,19 @@
           <!-- <Form.Description>Type in a strong password!</Form.Description> -->
           <Form.FieldErrors />
         </Form.Field>
-
+        {#if isSignup}
         <Form.Field {form} name="avatar">
           <Form.Control let:attrs>
             <Form.Label>Avatar</Form.Label>
-            <Input {...attrs} bind:value="{$formData.avatar}" type="file"/>
+            <input {...attrs} type="file" accept=".jpg, .jpeg, .png, .webp" required
+            bind:files={$file}
+            />
           </Form.Control>
           <!-- <Form.Description>Type in a strong password!</Form.Description> -->
           <Form.FieldErrors />
         </Form.Field>
+        {/if}
+        
       </form>
       <Card.Footer class="flex flex-col">
         <Button
