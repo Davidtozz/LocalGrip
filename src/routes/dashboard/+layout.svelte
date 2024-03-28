@@ -113,7 +113,7 @@
         </Avatar.Root>
         <div class="flex flex-col">
           <small class="text-primary-foreground"
-            >{data.user?.user_metadata.username}</small>
+            >{data.user?.user_metadata.username ?? "admin"}</small>
           <small class="text-primary"
             >{data.user?.user_metadata.isLocalOwner
               ? "Owner"
