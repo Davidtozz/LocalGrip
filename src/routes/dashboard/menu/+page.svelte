@@ -2,7 +2,7 @@
   import NewItemButton from "../../../lib/components/ui/button/NewItemButton.svelte";
   import * as Card from "$lib/components/ui/card";
   import { Label } from "$lib/components/ui/label";
-  import type { MenuItemSchema } from "$lib/formSchemas";
+  import type { MenuItemSchema } from "$lib/FormSchemas";
   import { type Infer, type SuperValidated } from "sveltekit-superforms";
   import * as Avatar from "$lib/components/ui/avatar";
   import { Edit, EditIcon, Ellipsis } from "lucide-svelte";

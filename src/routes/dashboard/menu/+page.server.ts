@@ -1,6 +1,6 @@
 import { fail, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
-import { menuItemSchema } from "$lib/formSchemas";
+import { menuItemSchema } from "$lib/FormSchemas";
 import { zod } from "sveltekit-superforms/adapters";
 import { superValidate } from "sveltekit-superforms";
 import type { Tables } from "$db/schema";

@@ -4,7 +4,7 @@
     type Infer,
     type SuperValidated,
   } from "sveltekit-superforms";
-  import { authSchema, type AuthSchema } from "../lib/formSchemas";
+  import { authSchema, type AuthSchema } from "../lib/FormSchemas";
   import AuthForm from "$lib/components/ui/form/AuthForm.svelte";
   import * as Card from "$lib/components/ui/card";
   import * as Form from "$lib/components/ui/form/";

@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import type { z } from "zod";
-import type { MenuItemSchema } from "./formSchemas";
+import type { MenuItemSchema } from "./FormSchemas";
 
 function _menuStore() {
   const { subscribe, set, update } = writable<z.infer<MenuItemSchema>[]>([]);
