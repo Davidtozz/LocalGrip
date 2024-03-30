@@ -24,7 +24,7 @@
 
   let showMeter: boolean = false;
 
-  const form = superForm(data, {
+  const form = superForm(data, { 
     dataType: "json",
     validators: zodClient(SignupSchema),
     onUpdate: ({form}) => {

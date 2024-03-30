@@ -115,7 +115,7 @@
           <small class="text-primary-foreground"
             >{data.user?.user_metadata.username ?? "admin"}</small>
           <small class="text-primary"
-            >{data.user?.user_metadata.isLocalOwner
+            >{data.user?.user_metadata.isBusinessOwner
               ? "Owner"
               : "Employee"}</small>
         </div>

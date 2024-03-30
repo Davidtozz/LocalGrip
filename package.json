@@ -47,6 +47,7 @@
     "bits-ui": "^0.19.7",
     "chart.js": "^4.4.2",
     "chartjs": "^0.3.24",
+    "check-password-strength": "^2.0.10",
     "clsx": "^2.1.0",
     "formsnap": "^0.5.1",
     "lucide-svelte": "^0.358.0",

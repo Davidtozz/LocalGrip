@@ -1,0 +1,1 @@
+<h1>Starting point of customer flow. People will choose a restaurant to order from in here!</h1>

@@ -38,6 +38,9 @@ dependencies:
   chartjs:
     specifier: ^0.3.24
     version: 0.3.24
+  check-password-strength:
+    specifier: ^2.0.10
+    version: 2.0.10
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
@@ -1505,6 +1508,10 @@ packages:
 
   /chartjs@0.3.24:
     resolution: {integrity: sha512-h6G9qcDqmFYnSWqjWCzQMeOLiypS+pM6Fq2Rj7LPty8Kjx5yHonwwJ7oEHImZpQ2u9Pu36XGYfardvvBiQVrhg==}
+    dev: false
+
+  /check-password-strength@2.0.10:
+    resolution: {integrity: sha512-HRM5ICPmtnNtLnTv2QrfVkq1IxI9z3bzYpDJ1k5ixwD9HtJGHuv265R6JmHOV6r8wLhQMlULnIUVpkrC2yaiCw==}
     dev: false
 
   /chokidar@3.6.0:

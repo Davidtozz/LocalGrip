@@ -1,6 +1,6 @@
 import { fail, type Actions } from "@sveltejs/kit";
 import { superValidate, withFiles } from "sveltekit-superforms";
-import { authSchema } from "../lib/formSchemas";
+import { authSchema } from "../lib/FormSchemas";
 import { zod } from "sveltekit-superforms/adapters";
 
 import type { PageServerLoad } from "./$types";
@@ -22,7 +22,7 @@ export const actions: Actions = {
       return fail(400, withFiles({ form }));
     }
 
-    const { email, username, password, isLocalOwner } = form.data;
+    const { email, username, password, isBusinessOwner } = form.data;
     if (!email)
       return fail(400, {
         message: "Email is required for signing up",
@@ -35,7 +35,7 @@ export const actions: Actions = {
       options: {
         data: {
           username: username,
-          isLocalOwner: isLocalOwner
+          isBusinessOwner: isBusinessOwner
         },
       },
     });

@@ -13,7 +13,7 @@ export const load: PageServerLoad = async () => {
     return { form: data }
 };
 
-export const actions: Actions = {
+export const actions: Actions = { 
     default: async ({request, locals}) => {
         const form = await superValidate(request, zod(SignupSchema));
     

@@ -21,6 +21,7 @@ export const actions: Actions = {
             })
         }
 
+        
         const { name, address, phone, website} = form.data;
 
         const { error } = await locals.supabase.from('restaurant').insert({

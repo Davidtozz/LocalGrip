@@ -15,6 +15,7 @@
 
     export let data: SuperValidated<Infer<typeof RestaurantProfileSchema>>;
 
+
     const form = superForm(data, {
         dataType: "json",
         validators: zodClient(RestaurantProfileSchema),

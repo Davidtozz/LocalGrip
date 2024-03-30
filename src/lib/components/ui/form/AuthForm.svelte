@@ -4,7 +4,7 @@
   import * as Card from "../card";
   import * as Form from "../form";
   import { Input, type FormInputEvent } from "../input";
-  import type { AuthSchema } from "$lib/formSchemas";
+  import type { AuthSchema } from "$lib/FormSchemas";
 
   export let form: SuperForm<Infer<AuthSchema>>;
   const { form: formData } = form;
