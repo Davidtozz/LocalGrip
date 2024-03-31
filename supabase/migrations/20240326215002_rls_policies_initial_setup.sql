@@ -13,7 +13,7 @@ alter table "public"."order" drop column "status";
 
 alter table "public"."promotions" alter column "name" set not null;
 
-drop extension if exists "pg_jsonschema";
+--drop extension if exists "pg_jsonschema";
 
 create policy """Owners can read their own restaurant data"""
 on "public"."menu"

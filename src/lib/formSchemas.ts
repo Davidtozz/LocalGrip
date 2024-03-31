@@ -49,3 +49,12 @@ export const RestaurantProfileSchema = z.object({
       /* todo: define later */
     }).optional(),
 })
+
+/* Rough idea */
+export const RestaurantMetadataSchema = z.object({
+  bio: z.string().optional(),
+  categories: z.array(z.string()).min(1).optional(),
+  subcategories: z.array(z.string()).min(1).optional(),
+  tags: z.array(z.string()).min(1).optional(),
+  images: z.array(z.instanceof(File)).min(1).optional(),
+})
