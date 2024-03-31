@@ -18,6 +18,7 @@
   import PasswordMeter from "$lib/components/PasswordMeter.svelte";
     import { supabase } from "$lib/supabaseClient";
     import { onDestroy } from "svelte";
+    import { browser } from "$app/environment";
 
 
   export let data: SuperValidated<Infer<typeof SignupSchema>>;
@@ -29,10 +30,10 @@
     validators: zodClient(SignupSchema),
     onUpdate: ({form}) => {
       if(form.valid) {
-        let id = setTimeout(() => {
-          goto("/signup/business")
-        }, 0);
-        onDestroy(() => clearTimeout(id))
+        if(browser) {
+          toast.success("Form is valid");
+          window.location.href = "/signup/business";
+        }
       }
     }
   });
@@ -65,7 +66,7 @@
               type="text"
               placeholder="e.g. Marcus"
               bind:value="{$formData.firstname}" />
-            
+             
           </Form.Control><Form.FieldErrors />
         </Form.Field>
 

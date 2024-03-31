@@ -21,21 +21,19 @@ export const actions: Actions = {
             })
         }
 
-        
         const { name, address, phone, website} = form.data;
 
-        const { error } = await locals.supabase.from('restaurant').insert({
-            name: name,
+        const {error} = await locals.supabase.rpc('create_restaurant_profile', {
+            name: name, 
             address: address,
-            phone: phone,
-            website_url: website,
-            owner_id: locals.user?.id
+            phone: phone, 
+            website: website
         })
+
 
         if(error) throw PageError(500, {
-            message: "Error creating restaurant profile"
+            message: "Error creating restaurant profile: " + error.message + "\n" + error.details,
         })
-
 
         return { form }
     }

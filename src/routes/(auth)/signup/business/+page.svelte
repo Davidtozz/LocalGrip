@@ -12,9 +12,11 @@
     import Button from "$lib/components/ui/button/button.svelte";
     import {LoadingSpinner} from "$lib/components/assets/index";
     import { toast } from "svelte-sonner";
+    import { goto } from "$app/navigation";
+    import { FieldErrors } from "formsnap";
+    import { browser } from "$app/environment";
 
     export let data: SuperValidated<Infer<typeof RestaurantProfileSchema>>;
-
 
     const form = superForm(data, {
         dataType: "json",
@@ -22,13 +24,16 @@
         onUpdated: async ({ form }) => {
             if(form.valid) {
                 toast.success("All set! You can now start using the app.");
+                if(browser) {
+                    window.location.href = "/dashboard";
+                } 
             } else {
                 toast.error("Please fill in the required fields.");
             }
-        },
+        }
     })
 
-    const { form: formData, enhance, submitting, errors } = form;
+    const { form: formData, enhance, submitting } = form;
 
 </script>
 
@@ -47,11 +52,11 @@
                     <Form.Control let:attrs>
                         <Label for="name">Name</Label>
                         <Input {...attrs} bind:value={$formData.name}/>
-                        <Form.FieldErrors />
-                    </Form.Control>
+                        <Form.FieldErrors /> 
+                    </Form.Control> 
                     {#if $formData.name}
                         <small class="text-muted-foreground">It will be displayed as @{$formData.name.trim()}</small>
-                    {/if}
+                    {/if}              
                 </Form.Field>
 
                 <Form.Field {form} name="phone" class="grid gap-2 flex-[4]">
@@ -95,9 +100,6 @@
                     <Input {...attrs} bind:value={$formData.website}/>
                     <Form.FieldErrors />
                 </Form.Control>
-                <a 
-                class="underline-offset-1"
-                href="mailto:davidepulvirenti2013@gmail.com">Need a website?</a>
             </Form.Field>
 
 
