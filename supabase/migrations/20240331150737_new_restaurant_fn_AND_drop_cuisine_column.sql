@@ -3,7 +3,7 @@ create extension if not exists "pg_jsonschema" with schema "extensions";
 
 alter table "public"."restaurant" drop column "cuisinez_type";
 
-drop extension if exists "pg_jsonschema";
+--drop extension if exists "pg_jsonschema";
 
 set check_function_bodies = off;
 

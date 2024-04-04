@@ -1,11 +1,12 @@
 import { z } from "zod";
 /* import { passwordStrength } from "check-password-strength"; */
 export const MenuItemSchema = z.object({
+  id: z.string().uuid().optional(),
   name: z.string().min(3).max(30),
-  description: z.string().min(3).max(100),
+  ingredients: z.string(),
   price: z.coerce.number().min(0.01),
   category: z.string().min(3).max(30),
-  subcategory: z.string().min(3).max(30).optional(),
+  image: z.instanceof(File).optional()
 });
 
 export const SignupSchema = z.object({

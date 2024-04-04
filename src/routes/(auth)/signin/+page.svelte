@@ -31,7 +31,7 @@
       if (form.valid) {
         toast.success("Welcome on board!!!");
 
-        goto("/dashboard");
+        goto("/dashboard-new/menu");
       }
     },
   });

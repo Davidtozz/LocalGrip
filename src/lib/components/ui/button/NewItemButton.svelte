@@ -4,7 +4,7 @@
   import * as Select from "$lib/components/ui/select";
   import * as Form from "$lib/components/ui/form";
   import { Plus } from "lucide-svelte";
-  import { menuItemSchema, type MenuItemSchema } from "$lib/FormSchemas";
+  import { MenuItemSchema } from "$lib/FormSchemas";
   import { zodClient } from "sveltekit-superforms/adapters";
   import {
     superForm,
@@ -17,7 +17,7 @@
 
   export let data: any;
   const form = superForm(data, {
-    validators: zodClient(menuItemSchema),
+    validators: zodClient(MenuItemSchema),
     validationMethod: "oninput",
     dataType: "json",
     onUpdated: ({ form: f }) => {

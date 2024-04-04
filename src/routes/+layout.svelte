@@ -5,6 +5,7 @@
   import "../app.pcss";
   import { ModeWatcher } from "mode-watcher";
   import { goto } from "$app/navigation";
+    import { onMount } from "svelte";
 
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === "SIGNED_OUT") {
@@ -15,6 +16,9 @@
       goto("/");
     }
   });
+
+  
+  
 </script>
 
 <Toaster position="bottom-right" />

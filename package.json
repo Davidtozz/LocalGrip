@@ -13,6 +13,7 @@
     "gen-types": "supabase gen types typescript --local > supabase/schema.ts"
   },
   "devDependencies": {
+    "@supabase/postgrest-js": "^1.15.0",
     "@sveltejs/adapter-auto": "^3.1.1",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",

@@ -146,11 +146,6 @@
           {/if}
         </Button>
 
-        <Button on:click={async () => goto("/signup/business")}>
-          Next page =>
-        </Button>
-
-
         <Button variant="outline" class="w-full space-x-2">
           <GoogleLogo class="h-full w-4" />
           <p>Sign up with Google</p>

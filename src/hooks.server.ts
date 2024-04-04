@@ -29,8 +29,9 @@ export const handle: Handle = async ({ event, resolve }) => {
     return session;
   };
 
+
   /* todo: check roles */
-  if (event.url.pathname.startsWith("/dashboard")) {
+  if (event.url.pathname.startsWith("/dashboard-new")) {
     const { data, error } = await event.locals.supabase.auth.getUser();
     if (error) {
       console.log(
@@ -45,3 +46,5 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   return resolve(event);
 };
+
+

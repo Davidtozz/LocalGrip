@@ -15,25 +15,37 @@
     import { goto } from "$app/navigation";
     import { FieldErrors } from "formsnap";
     import { browser } from "$app/environment";
+    import { onMount } from "svelte";
 
     export let data: SuperValidated<Infer<typeof RestaurantProfileSchema>>;
+
+    console.log("Is the app running in the browser? ", browser)
+
+    onMount(() => {
+        console.log("The form data is: ", data)
+    })
+    
 
     const form = superForm(data, {
         dataType: "json",
         validators: zodClient(RestaurantProfileSchema),
+        validationMethod: "submit-only",
         onUpdated: async ({ form }) => {
+            
+            console.log("The submitted form is valid: " + form.valid)
+            
             if(form.valid) {
                 toast.success("All set! You can now start using the app.");
                 if(browser) {
-                    window.location.href = "/dashboard";
-                } 
+                    window.location.href = "/dashboard-new/menu";
+                }
             } else {
                 toast.error("Please fill in the required fields.");
             }
         }
     })
 
-    const { form: formData, enhance, submitting } = form;
+    const { form: formData, enhance, submitting, constraints } = form;
 
 </script>
 
@@ -62,7 +74,10 @@
                 <Form.Field {form} name="phone" class="grid gap-2 flex-[4]">
                     <Form.Control let:attrs>
                         <Label for="phone">Phone</Label>
-                        <Input {...attrs} bind:value={$formData.phone}/>
+                        <Input 
+                        {...attrs} 
+                        {...$constraints.phone}
+                        bind:value={$formData.phone}/>
                         <Form.FieldErrors />
                     </Form.Control>
                 </Form.Field>
@@ -109,15 +124,15 @@
 
 
             <Button
-          type="submit"
-          class="{`w-full ${$submitting ? 'space-x-2' : ''}`}">
-          {#if $submitting}
-            <LoadingSpinner />
-            <p class="text-muted-foreground">Setting up profile...</p>
-          {:else}
-            Finish
-          {/if}
-        </Button>
+                type="submit"
+                class="{`w-full ${$submitting ? 'space-x-2' : ''}`}">
+                {#if $submitting}
+                    <LoadingSpinner />
+                    <p class="text-muted-foreground">Setting up profile...</p>
+                {:else}
+                    Finish
+                {/if}
+            </Button>
 
         </form>
     </div>
